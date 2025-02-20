@@ -1,4 +1,4 @@
-# Redis Connection Test
+# Redis Connection Per Second Test
 
 ## Description
 This C++ application tests the rate of connection establishment and simple GET operations with a Redis server. It uses multi-threading to achieve high connection rates and provides real-time statistics on connections per second.
