@@ -29,6 +29,7 @@ Compile the application using the following command:
 
 ```
 g++ -std=c++11 -o redis_connection_test redis_connection_test.cpp -lhiredis -pthread
+or g++ -std=c++11 -o redis_connection_test redis_connection_test_with_latency.cpp -lhiredis -pthread
 ```
 
 ## Usage
@@ -53,6 +54,7 @@ This will attempt to establish 10,000 connections per second to a Redis server r
 ## Output
 The program will continuously output:
 - Number of connections established in the last second
+- The average latency (The latency measurement starts just before opening the connection and ends immediately after closing it, encompassing the entire request lifecycle)
 
 Press Ctrl+C to stop the test and exit the program.
 
