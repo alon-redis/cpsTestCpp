@@ -1,10 +1,3 @@
-// TUNE = ulimit -n 1000000; sysctl -w net.ipv4.tcp_fin_timeout=10; sysctl -w net.ipv4.tcp_tw_reuse=1
-// INSTALL = apt install g++ libhiredis-dev
-// CREATE = pico redis_connection_test.cpp
-// COMPILE = g++ -std=c++11 -o redis_connection_test redis_connection_test.cpp -lhiredis -pthread
-// USAGE = ./redis_connection_test 10.0.101.127 10000 10000 4
-
-
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -113,16 +106,13 @@ void testConnection(const char* host, int port, int desiredRate, int numThreads)
         threads.emplace_back(workerThread, host, port, ratePerThread, std::ref(totalConnections));
     }
 
-    int seconds = 0;
     while (running) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        seconds++;
 
         int connectionsPerSecond = totalConnections.exchange(0);
 
         std::lock_guard<std::mutex> lock(cout_mutex);
         std::cout << "Connections in last second: " << connectionsPerSecond << std::endl;
-        std::cout << "Average connections per second: " << (connectionsPerSecond / seconds) << std::endl;
     }
 
     for (auto& thread : threads) {
