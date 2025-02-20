@@ -58,8 +58,4 @@ Press Ctrl+C to stop the test and exit the program.
 
 ## Note
 This application creates and closes a new connection for each operation, which may impact performance. It's designed for testing connection establishment rates rather than optimal Redis usage in production environments.
-```
 
-This README provides a concise overview of the application, its features, how to compile and use it, and what to expect from its output. It also includes a note about the connection handling strategy used in the application.
-
----
