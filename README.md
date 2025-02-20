@@ -10,10 +10,18 @@ This C++ application tests the rate of connection establishment and simple GET o
 - Graceful shutdown with Ctrl+C
 
 ## Prerequisites
-- C++11 compatible compiler
-- hiredis library
+- C++11 compatible compiler and hiredis library
 - Redis server
+```
+apt install g++ libhiredis-dev
+```
 
+## OS tuning
+- tune the OS configuration
+```
+ulimit -n 1000000; sysctl -w net.ipv4.tcp_fin_timeout=10; sysctl -w net.ipv4.tcp_tw_reuse=1
+```
+  
 ## Compilation
 Compile the application using the following command:
 
@@ -43,7 +51,6 @@ This will attempt to establish 10,000 connections per second to a Redis server r
 ## Output
 The program will continuously output:
 - Number of connections established in the last second
-- Average connections per second since the start of the test
 
 Press Ctrl+C to stop the test and exit the program.
 
