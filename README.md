@@ -19,7 +19,9 @@ apt install g++ libhiredis-dev
 ## OS tuning
 - tune the OS configuration
 ```
-ulimit -n 1000000; sysctl -w net.ipv4.tcp_fin_timeout=10; sysctl -w net.ipv4.tcp_tw_reuse=1
+sudo ulimit -n 1000000
+sudo sysctl -w net.ipv4.tcp_fin_timeout=10
+sudo sysctl -w net.ipv4.tcp_tw_reuse=1
 ```
   
 ## Compilation
